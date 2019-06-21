@@ -34,9 +34,7 @@ If those instructions are unclear or if you run into other trouble, you can find
 
 ## Usage Instructions
 
-Simply right click the BSC icon to the right of the URL field and configure BSC settings through the "options" menu item.
-
-By default, only promoted posts are hidden.
+Simply click the orange dot to the right of the URL field and then click the "Filter Settings" button. On the settings page, you can set whichever filters you prefer. On your SoundCloud stream, anything filtered out will still display as a line item with a description next to the artist/track title which explains what filter was applied for it be be hidden. If you'd like to display that track, you can always click "Show" to see it.
 
 
 ## Authors
