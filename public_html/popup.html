@@ -22,26 +22,60 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
             body {
-                font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-                font-size: 10pt;
+              font-family: "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+              font-size: 10pt;
+              margin: 30px;
+              text-align: center;
             }
             body h1 {
-                font-size: 12pt;
-                font-weight: bold;
+              font-size: 14pt;
+              font-weight: bold;
+              margin-bottom: 25px
             }
             body h2 {
-                font-size: 11pt;
-                font-weight: normal;
+              font-size: 11pt;
+              font-weight: normal;
             }
+
+            a:link {
+              text-decoration: none;
+              color: #fff;
+            }
+
+            .settings {
+              height: auto;
+              width: 100px;
+              padding: 12px;
+              background-color: #FF5500;
+              color: #fff;
+              margin: 0 auto;
+              font-size: 10pt;
+              font-weight: normal;
+              border-radius: 5px;
+              text-decoration: none;
+            }
+
+            a.os:link {color: #999; text-decoration:underline;}
+            a.os:active {color: #999;text-decoration:underline;}
+            a.os:visited {color: #999;text-decoration:underline;}
+            a.os:hover {color: #999;}
+
+            .wrapper {
+              margin: 0 auto;
+              text-align: center;
+            }
+
+            #version {display: none;}
         </style>
-        
+
     </head>
-    <body style="min-width: 180px">
+    <body style="min-width: 200px">
         <h1>Better SoundCloud</h1>
-        <h2 id="version">Version failed to load from manifest!</h2>
-        <p>Right click the icon and select "options" to change BSC settings or click <a href="nowhere" class="options_page_prelink" target="_blank">here</a>.</p>
-        <p>Better SoundCloud is an open source project hosted on GitHub here: <a href="https://github.com/brocef/BetterSoundCloud" target="_blank">https://github.com/brocef/BetterSoundCloud</a>.</p>
-        <p>Refreshing the page typically fixes most initialization issues. If further issues persist, file a report on the <a href="https://github.com/brocef/BetterSoundCloud/issues" target="_blank">BSC Github Issue Tracker</a>.</p>
+        <div id="version"></div>
+        <a href="nowhere" class="options_page_prelink" target="_blank"><div class="settings">Filter Settings</div></a>
+        <p style="color: #999; font-size:8pt; margin-top: 25px;">This version modified by <a href="https://www.kevinwadeshaw.com" target="_blank" class="os">KWS</a>.</p>
+        <p style="color: #999; font-size:8pt;"><a href="https://github.com/brocef/BetterSoundCloud" target="_blank" class="os">Original open source project</a>.</p>
+
     </body>
     <script type="text/javascript" src="popup.js"></script>
 </html>

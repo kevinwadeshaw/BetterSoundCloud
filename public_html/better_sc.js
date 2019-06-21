@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2018 Brian Cefali
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ initBSC();
 /**
  * Ignore this function--its a fancy way to do something when the document is loaded and ready.
  * Equivalent to jQuery's $.ready()
- * 
+ *
  * @param {type} funcName
  * @param {type} baseObj
  * @returns {undefined}
@@ -147,7 +147,7 @@ function processSCItemWhenLoaded(sc_item, cfg) {
     var loopBody = function () {
         processSCItem(sc_item, cfg);
     };
-	
+
 	loopInject(loopCond, loopBody, 5);
 }
 
@@ -162,7 +162,7 @@ function parseSCItem(sc_item) {
 	//.sc-ministats-reposts
 	var poster_a;
 	var is_repost;
-	
+
 	// If poster_parent is null, then we are on an artist's page and the track is posted by the artist
 	if (poster_parent == null) {
 		poster_a = artist_a;
@@ -171,7 +171,7 @@ function parseSCItem(sc_item) {
 		var poster_a = poster_parent.querySelector("a:first-child");
 		var is_repost = poster_parent.querySelector("span.soundContext__repost, .sc-ministats-reposts") !== null;
 	}
-	
+
     var is_promoted = sel("span.sc-promoted-icon") !== null;
 
     var track_a = sel("div.soundTitle__titleContainer > div > a.soundTitle__title");
@@ -190,7 +190,7 @@ function parseSCItem(sc_item) {
         name: artist_a.textContent.trim(),
         link: artist_a.href
     };
-    
+
     var poster;
     if (is_promoted) {
         poster = {
@@ -296,27 +296,26 @@ function processSCItem(sc_item, cfg) {
     var canvas = sc_item.querySelector('.bscInitialized');
     canvas.classList.remove('bscInitialized');
     canvas.classList.add('bscProcessed');
-    
+
 	if (sc_item.hasAttribute("bscVisited")) return;
 	sc_item.setAttribute("bscVisited", "true");
-	
+
     if (cfg['onlyFilterStream'] && window.location.pathname != "/stream") {
         return;
     }
-    
+
     var sc_obj = parseSCItem(sc_item);
 
 	if (sc_obj.is_repost) {
 		var toggleBlock = document.createElement('span');
 		blockUserReposts(cfg, sc_obj.values.poster.name, toggleBlock, cfg.blockedRepostUsers[sc_obj.values.poster.name]);
-		
-		toggleBlock.style.marginLeft = "5px";
+
+		toggleBlock.style.marginLeft = "10px";
 		toggleBlock.style.cursor = "pointer";
-		toggleBlock.style.fontFamily = "monospace";
 		toggleBlock.addEventListener('click', mkToggleBlockClickListener(cfg, sc_obj));
 		sc_obj.dom.poster_a.parentElement.parentElement.appendChild(toggleBlock);
 	}
-	
+
     var filter_list = filter_handler.getFilterList();
     for (var i = 0; i < filter_list.length; i++) {
         var r = filter_list[i](sc_obj, cfg);
@@ -324,7 +323,7 @@ function processSCItem(sc_item, cfg) {
             continue;
         }
 		BSC['filtered_tracks'] += 1;
-		
+
         var sc_item_div = sc_item.querySelector("div");
 		sc_item_div.classList.add("filteredTrack");
 
@@ -337,7 +336,7 @@ function processSCItem(sc_item, cfg) {
 			bsc_repl_p.appendChild(bsc_repl_msg);
 
 			var bsc_repl_show = document.createElement("span");
-			bsc_repl_show.textContent = "[show]";
+			bsc_repl_show.textContent = "Show";
 			bsc_repl_show.classList.add("bsc_show");
 			bsc_repl_p.appendChild(bsc_repl_show);
 
@@ -347,26 +346,29 @@ function processSCItem(sc_item, cfg) {
 		} else {
 			sc_item_div.parentElement.parentElement.removeChild(sc_item_div.parentElement);
 		}
-		
+
 		document.querySelector("#total_filtered_tracks").textContent = BSC['filtered_tracks'];
-		
+
         break;
     }
 }
 
 function blockUserReposts(cfg, poster_name, toggleBlock, blocked) {
 	if (blocked) {
-		toggleBlock.textContent = "[unblock reposts]";
-		toggleBlock.style.color = "#0000FF";
+		toggleBlock.textContent = "Unblock Reposts";
+		toggleBlock.style.color = "#999";
 		toggleBlock.classList.add("blocked");
+		toggleBlock.style.fontFamily = "Lucida Grande, Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;";
+		toggleBlock.style.marginLeft = "10px";
+
 		cfg.blockedRepostUsers[poster_name] = true;
 	} else {
-		toggleBlock.textContent = "[ block reposts ]";
-		toggleBlock.style.color = "#FF0000";
+		toggleBlock.textContent = "Block Reposts";
+		toggleBlock.style.color = "#999";
 		toggleBlock.classList.remove("blocked");
 		delete cfg.blockedRepostUsers[poster_name];
 	}
-	
+
 	chrome.storage.sync.set({
 		blockedRepostUsers: cfg.blockedRepostUsers
 	}, function () {});
@@ -384,40 +386,40 @@ function mkHideShowClickListener(sc_item_div) {
     return function (evt) {
         bsc.classList.toggle("filteredTrack");
         if (bsc.classList.contains("filteredTrack")) {
-            evt.currentTarget.textContent = "[show]";
+            evt.currentTarget.textContent = "Show";
         } else {
-            evt.currentTarget.textContent = "[hide]";
+            evt.currentTarget.textContent = "Hide";
         }
     };
 }
 
 var filter_handler = (function() {
     var filters = {};
-    
+
     filters.filter_promoted = function(sc_obj, cfg) {
         if (!cfg.allowPromoted && sc_obj.is_promoted) {
-            return sc_obj.values.track.name + " was filtered out because it is a promoted track";
+            return sc_obj.values.track.name + " — filtered out because it's a promoted track";
         }
         return false;
     };
 
     filters.filter_repost = function(sc_obj, cfg) {
         if (!cfg.allowReposts && sc_obj.is_repost) {
-            return sc_obj.values.track.name + " was filtered out because it is a repost";
+            return sc_obj.values.track.name + " — filtered out because it's a repost";
         }
         return false;
     };
-	
+
 	filters.filter_repost_from_user = function(sc_obj, cfg) {
 		if (sc_obj.is_repost && cfg.blockedRepostUsers[sc_obj.values.poster.name]) {
-			return sc_obj.values.track.name + " was filtered out because reposts from " + sc_obj.values.poster.name + " are blocked";
+			return sc_obj.values.track.name + " — filtered out because reposts from " + sc_obj.values.poster.name + " are blocked";
 		}
 		return false;
 	};
 
     filters.filter_playlist = function(sc_obj, cfg) {
         if (!cfg.allowPlaylists && sc_obj.playlist) {
-            return sc_obj.values.track.name + " was filtered out because it is a playlist";
+            return sc_obj.values.track.name + " — filtered out because it's a playlist";
         }
         return false;
     };
@@ -425,13 +427,13 @@ var filter_handler = (function() {
     filters.filter_trackDuration = function(sc_obj, cfg) {
         var sc_dur = sc_obj.values.duration.duration;
         if (cfg.minimumTrackDuration.as_int > 0 && sc_dur < cfg.minimumTrackDuration.as_int) {
-            return sc_obj.values.track.name + " was filtered out because it is too short";
+            return sc_obj.values.track.name + " — filtered out because it's too short";
         } else if (cfg.maximumTrackDuration.as_int > 0 && sc_dur > cfg.maximumTrackDuration.as_int) {
-            return sc_obj.values.track.name + " was filtered out because it is too long";
+            return sc_obj.values.track.name + " — filtered out because it's too long";
         }
         return false;
     };
-    
+
     filters.getFilterList = function() {
         var filter_list = [];
         var keys = Object.keys(filters);
@@ -443,7 +445,7 @@ var filter_handler = (function() {
         }
         return filter_list;
     };
-    
+
     return filters;
 })();
 
@@ -452,7 +454,7 @@ function initialParse(cfg) {
 		var bsc_init_items = document.querySelectorAll(".bscInitialized");
 		return bsc_init_items.length > 0;
 	};
-	
+
 	var loopBody = function() {
 		var sc_items = document.querySelectorAll("li.soundList__item");
 		for (var i = 0; i < sc_items.length; i++) {
@@ -462,7 +464,7 @@ function initialParse(cfg) {
 		}
         initialParse(cfg);
 	};
-	
+
 	loopInject(loopCond, loopBody, 5);
 }
 
@@ -480,14 +482,14 @@ function init() {
             cfg = DEFAULT_OPTIONS;
             //TODO: Notify the user that the version changed and the settings were reset
         }
-		
+
 		var orig_pathname = window.location.pathname;
-		
+
 		// If the page we're on is not the page init() was called on, then bail
 		var loopTerm = function() {
 			return window.location.pathname != orig_pathname;
 		};
-		
+
         var loopCond = function () {
             return getTargetList();// && document.querySelector("canvas.bscInitialized");
         };
@@ -514,40 +516,40 @@ function init() {
                 childList: true,
                 characterData: false
             };
-			
+
 			var bsc_info_li = document.createElement('li');
 			bsc_info_li.classList.add('bsc_info_area');
-			
+
 			var bsc_info_table = document.createElement('table');
             bsc_info_table.style = 'width: 100%;';
-            
+
             var bsc_info_table_row = document.createElement('tr');
             var bsc_info_td = document.createElement('td');
             var bsc_help_td = document.createElement('td');
             bsc_info_td.style = 'vertical-align: top;';
-            
+
             bsc_help_td.style = "vertical-align: top; text-align: right;";
-            
+
             bsc_info_li.appendChild(bsc_info_table);
             bsc_info_table.appendChild(bsc_info_table_row);
             bsc_info_table_row.appendChild(bsc_info_td);
             bsc_info_table_row.appendChild(bsc_help_td);
-            
+
             var bsc_help_p = document.createElement('p');
             bsc_help_p.textContent = 'Not working? Try scrolling to the bottom or refreshing.';
-            
+
             var bsc_help_p2 = document.createElement('p');
             bsc_help_p2.textContent = 'If you have blocked a user, you need to refresh. If all else fails, report a bug ';
-            
+
             var bsc_help_a = document.createElement('a');
             bsc_help_a.href = 'https://github.com/brocef/BetterSoundCloud/issues';
             bsc_help_a.textContent = 'here';
             bsc_help_a.target = '_blank';
-            
+
             bsc_help_td.appendChild(bsc_help_p);
             bsc_help_td.appendChild(bsc_help_p2);
             bsc_help_p2.appendChild(bsc_help_a);
-            
+
 			var ver = '?';
 			if (chrome) {
 				ver = chrome.runtime.getManifest().version;
@@ -555,27 +557,27 @@ function init() {
 			var bsc_header = document.createElement('p');
 			bsc_header.textContent = 'BetterSoundCloud v' + ver + ' is running';
 			bsc_info_td.appendChild(bsc_header);
-			
+
 			var bsc_info_p = document.createElement('p');
 			bsc_info_p.appendChild(document.createTextNode('Total Tracks Filtered: '));
-			
+
 			var total_filtered_tracks = document.createElement('span');
 			total_filtered_tracks.id = "total_filtered_tracks";
 			total_filtered_tracks.textContent = '0';
 			bsc_info_p.appendChild(total_filtered_tracks);
-			
+
 			bsc_info_td.appendChild(bsc_info_p);
-			
-			
+
+
 			target.insertBefore(bsc_info_li, target.childNodes[0]);
-			
+
             observer.observe(target, config);
 
             // observer.disconnect();
 
             initialParse(cfg);
         };
-		
+
         loopInjectWithLimit(loopCond, loopBody, 5, loopTerm);
     });
 }
@@ -620,7 +622,7 @@ then goes back to /stream, the user_stream_obs will now be observing a DOM eleme
 and a new one should be constructed when the .userMain parent exists again (after the user navigates to a profile page again).
 
 To do this, the two observers are global variables which will also represent the state of the extension. If user_stream_obs is not null, and the user is
-on /stream, then user_stream_obs should be disconnected and set to null. If the user navigates to a user page and user_stream_obs is null, then a new 
+on /stream, then user_stream_obs should be disconnected and set to null. If the user navigates to a user page and user_stream_obs is null, then a new
 mutation observer should be constructed.
 */
 content_obs = null;
@@ -648,7 +650,7 @@ docReady(function () {
 				if (get_user_stream() != null && get_stream() != null) {
 					console.log("Invalid state! Unknown behavior!");
 				}
-				
+
                 var content = document.querySelector("#content");
 
 				var content_obs_callback = function (mutations) {
@@ -659,7 +661,7 @@ docReady(function () {
                     }
 					return false;
                 };
-				
+
 				var init_user_stream_obs = function() {
 					var user_stream = get_user_stream();
 					if (user_stream != null) {
@@ -670,7 +672,7 @@ docReady(function () {
 								init();
 							}
 						});
-						
+
 						user_stream_obs.observe(user_stream, {
 							childList: true,
 							attributes: false,
@@ -684,7 +686,7 @@ docReady(function () {
 						}
 					}
 				};
-				
+
                 content_obs = new MutationObserver(function(mutations) {
 					if (content_obs_callback(mutations)) {
 						init_user_stream_obs();
@@ -692,8 +694,8 @@ docReady(function () {
 						init();
 					}
 				});
-				
-				
+
+
                 content_obs.observe(content, {
                     childList: true,
                     attributes: false,

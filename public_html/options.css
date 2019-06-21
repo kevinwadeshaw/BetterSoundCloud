@@ -18,13 +18,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 html, body {
     width: 100%;
     height: 100%;
-    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-family: "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
     font-size: 14px;
     font-style: normal;
     font-variant: normal;
-    font-weight: 400;
     line-height: 20px;
-	margin: 0;
+    color:#333;
+	   margin: 0;
 }
 
 #bsc_frame {
@@ -34,15 +34,6 @@ html, body {
     margin: 0 auto;
 }
 
-#notes {
-	width: 100%;
-}
-
-#notes > div {
-	margin: 0 auto;
-	display: table;
-}
-
 .bsc_centered_text {
     display: block;
     text-align: center;
@@ -50,30 +41,29 @@ html, body {
 
 #bsc_frame h1 {
     margin: 0 0 10px 0;
-    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-family: "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
     font-size: 24px;
+    font-weight: bold;
     font-style: normal;
     font-variant: normal;
-    font-weight: 500;
     line-height: 26.4px;
+    margin: 50px 0px 10px 0px;
 }
 
 #bsc_frame > h2 {
     margin: 0 0 20px 0;
-    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-family: "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
     font-size: 18px;
     font-style: normal;
     font-variant: normal;
-    font-weight: 500;
     line-height: 19.4px;
 }
 
 #bsc_frame table input, #bsc_frame table select, #bsc_frame table option, #bsc_frame button {
-    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-family: "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
     font-size: 14px;
     font-style: normal;
     font-variant: normal;
-    font-weight: 400;
     line-height: 20px;
 }
 
@@ -91,7 +81,17 @@ html, body {
 }
 
 .bsc_info {
-    color: green;
+    font-family: "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+    width: 100%;
+      height: auto;
+      padding: 12px;
+      color: #32DD7E;
+      font-size: 10pt !important;
+      font-weight: normal;
+      border-radius: 5px;
+      border: none;
+      text-decoration: none;
+      box-shadow: none;
 }
 
 .bsc_warning {
@@ -152,14 +152,23 @@ input, select {
 }
 
 #save {
-    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-    font-size: 18px !important;
+    font-family: "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
     text-align: center;
-	display: block;
-    margin: 20px auto 0 auto;
+	  display: block;
+    margin: 20px auto 50px auto;
     min-width: 100px;
     width: 50%;
-	max-width: 300px;
+	  max-width: 300px;
+      height: auto;
+      padding: 12px;
+      background-color: #FF5500;
+      color: #fff;
+      font-size: 10pt !important;
+      font-weight: normal;
+      border-radius: 5px;
+      border: none;
+      text-decoration: none;
+      box-shadow: none;
 }
 
 #blocked_users_row > td {
@@ -171,4 +180,29 @@ input, select {
 	min-width: 100px;
 	margin: 0 auto;
 	width: auto;
+}
+
+#unblock_user_button, #apply_preset_config_btn{
+  font-family: "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+  text-align: center;
+  display: block;
+  min-width: 100px;
+  width: 50%;
+  max-width: 300px;
+    height: auto;
+    padding: 12px;
+    background-color: #ccc;
+    color: #333;
+    font-size: 10pt !important;
+    font-weight: normal;
+    border-radius: 5px;
+    border: none;
+    text-decoration: none;
+    box-shadow: none;
+}
+
+#blocked_users_select {
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
