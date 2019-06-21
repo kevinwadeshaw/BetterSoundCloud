@@ -23,8 +23,11 @@ This is a Chrome extension, so the only prerequisite is having Chrome installed.
 
 This version is not available in the Chrome web store, so you'll have to load it as a local extension.
 
-To install, you must first download the files from the GitHub repository: click the green "Clone or download" button then "Download ZIP." Next, find a cozy location for this extension to live on your hard drive (or leave it wherever it was downloaded to) and then unzip the file. Now, open Chrome and follow these directions:
-click "Window" in the top menu > click "Extensions" > click "Load Unpacked" > in the file directory modal, locate your unzipped BetterSoundCloud folder and then click into the "public_html" subfolder > click "Select" > that's it!
+To do this, you must first download the files from the GitHub repository: click the green "Clone or download" button then "Download ZIP."
+
+Next, find a cozy location for this extension to live on your hard drive (or leave it wherever it was downloaded to) and then unzip the file.
+
+Now, open Chrome and follow these directions: click "Window" in the top menu > click "Extensions" > click "Load Unpacked" > in the file directory modal, locate your unzipped BetterSoundCloud folder and then click into the "public_html" subfolder > click "Select" > that's it!
 
 If those instructions are unclear or if you run into other trouble, you can find more information on loading local extensions [here](https://developer.chrome.com/extensions/getstarted#unpacked).
 
@@ -34,7 +37,7 @@ If those instructions are unclear or if you run into other trouble, you can find
 Simply right click the BSC icon to the right of the URL field and configure BSC settings through the "options" menu item.
 
 By default, only promoted posts are hidden.
-##
+
 
 ## Authors
 
@@ -42,7 +45,7 @@ By default, only promoted posts are hidden.
 
 See also the list of [contributors](https://github.com/brocef/BetterSoundCloud/contributors) who participated in this project.
 
-This version modified by [KWS](https://www.kevinwadeshaw.com/) for a better BetterSoundCloud experience 🧡
+This version modified by [KWS](https://www.kevinwadeshaw.com/) for a better BetterSoundCloud experience  🧡
 
 
 ## License
