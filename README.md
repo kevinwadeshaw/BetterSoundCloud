@@ -39,11 +39,10 @@ Simply click the orange dot to the right of the URL field and then click the "Fi
 
 ## Authors
 
-* **Brian Cefali** - *Initial work* - [Brocef](https://github.com/brocef)
+* **[Brian Cefali](https://github.com/brocef)** - *Initial work*
+* **[Kevin Wade Shaw](https://kevinwadeshaw.com)** - *This version*  🧡
 
 See also the list of [contributors](https://github.com/brocef/BetterSoundCloud/contributors) who participated in this project.
-
-This version modified by [KWS](https://www.kevinwadeshaw.com/) for a better BetterSoundCloud experience  🧡
 
 
 ## License
