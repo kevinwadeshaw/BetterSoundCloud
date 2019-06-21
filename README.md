@@ -1,4 +1,4 @@
-# BetterBetterSoundCloud
+# BetterSoundCloud
 
 BetterSoundCloud (BSC) is an open source project to improve the usability of the SoundCloud browser interface. The project is primarily concerned with parsing, filtering, and collating SoundCloud items, whether they are tracks or playlists, and then presenting them in a way that is more intuitive for the user.
 
