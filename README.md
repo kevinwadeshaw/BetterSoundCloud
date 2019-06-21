@@ -13,25 +13,28 @@ BSC can hide or remove tracks depending on the following criteria:
 
 The platform is quite extensible and custom filters can be written fairly easily to perform other DOM related operations to the feed.
 
-### Prerequisites
+
+## Prerequisites
 
 This is a Chrome extension, so the only prerequisite is having Chrome installed.
 
-### Installing
 
-There are two ways to install the extension, locally or via the web store.
+## Installing
 
-You can install the extension from [here](https://chrome.google.com/webstore/detail/better-soundcloud/nkeeogkohgghdbcjjjohielkpijpcpad) if you wish to use the latest stable version.
+This version is not available in the Chrome web store, so you'll have to load it as a local extension.
 
-However you may be inclined to make modifications of your own to the extension, in which case you'll want to clone this repository and then load the public\_html folder as a local extension. You can find more information on loading local extensions [here](https://developer.chrome.com/extensions/getstarted#unpacked).
+To install, you must first download the files from the GitHub repository: click the green "Clone or download" button then "Download ZIP." Next, find a cozy location for this extension to live on your hard drive (or leave it wherever it was downloaded to) and then unzip the file. Now, open Chrome and follow these directions:
+Click "Window" in the top menu > click "Extensions" > click "Load Unpacked" > in the file directory modal, locate your unzipped BetterSoundCloud folder and then click into the "public_html" subfolder > click "Select" > that's it!
+
+If those instructions are unclear or if you run into other trouble, you can find more information on loading local extensions [here](https://developer.chrome.com/extensions/getstarted#unpacked).
 
 
-
-### Usage Instructions
+## Usage Instructions
 
 Simply right click the BSC icon to the right of the URL field and configure BSC settings through the "options" menu item.
 
 By default, only promoted posts are hidden.
+
 
 ## Authors
 
@@ -39,9 +42,13 @@ By default, only promoted posts are hidden.
 
 See also the list of [contributors](https://github.com/brocef/BetterSoundCloud/contributors) who participated in this project.
 
+This version modified by [KWS](https://www.kevinwadeshaw.com/) for a better BetterSoundCloud experience 🧡
+
+
 ## License
 
-This project is licensed under the GNU 3 License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the GNU 3 License - see the [LICENSE.md](LICENSE.md) file for details.
+
 
 ## Acknowledgments
 
