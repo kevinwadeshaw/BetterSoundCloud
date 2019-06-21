@@ -27,14 +27,14 @@ To install, you must first download the files from the GitHub repository: click 
 click "Window" in the top menu > click "Extensions" > click "Load Unpacked" > in the file directory modal, locate your unzipped BetterSoundCloud folder and then click into the "public_html" subfolder > click "Select" > that's it!
 
 If those instructions are unclear or if you run into other trouble, you can find more information on loading local extensions [here](https://developer.chrome.com/extensions/getstarted#unpacked).
-<br>
+
 
 ## Usage Instructions
 
 Simply right click the BSC icon to the right of the URL field and configure BSC settings through the "options" menu item.
 
 By default, only promoted posts are hidden.
-<br>
+##
 
 ## Authors
 
